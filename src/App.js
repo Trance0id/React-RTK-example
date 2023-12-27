@@ -1,5 +1,6 @@
 import './App.css';
 import Counter from './Counter';
+import ReduxCounter from './ReduxCounter';
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Counter
+          Visit my Github!
         </a>
-        <Counter initialCount={4} />
+        <Counter initialCount={0} />
+        <ReduxCounter  />
       </header>
     </div>
   );

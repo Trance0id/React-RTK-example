@@ -1,5 +1,10 @@
 .Counter__buttons {
   margin: 5px;
   display: flex;
+  justify-content: center;
   gap: 10px;
+}
+
+.Counter__title {
+  margin: 25px 0 0;
 }

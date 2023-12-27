@@ -1,33 +1,35 @@
-import './Counter.css';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement, reset } from './counterSlice';
 
-const Counter = ({ initialCount }) => {
-  const [count, setCount] = useState(initialCount);
-  const [increment, setIncrement] = useState(2);
+const ReduxCounter = () => {
+  const [incrementValue, setIncrementValue] = useState(1);
+  const count = useSelector(state => state.counter.value);
+  const dispatch = useDispatch();
 
   const handleIncrementChange = e => {
     const numberValue = parseInt(e.target.value);
     if (!isNaN(numberValue)) {
-      setIncrement(numberValue);
+      setIncrementValue(numberValue);
     }
   };
 
   const handleIncrementButtonClick = () => {
-    setCount(prevCount => prevCount + increment);
+    dispatch(increment(incrementValue));
   };
 
   const handleDecrementButtonClick = () => {
-    setCount(prevCount => prevCount - increment);
+    dispatch(decrement(incrementValue));
   };
 
   const handleResetButtonClick = () => {
-    setCount(initialCount);
+    dispatch(reset(0));
   };
 
   return (
     <div className='Counter'>
-      <h5 className='Counter__title'>Local state counter</h5>
-      <input type='number' value={increment} onChange={handleIncrementChange} />
+      <h5 className='Counter__title'>Global state counter</h5>
+      <input type='number' value={incrementValue} onChange={handleIncrementChange} />
       <div className='Counter__buttons'>
         <button type='button' onClick={handleIncrementButtonClick}>
           Increment
@@ -44,4 +46,4 @@ const Counter = ({ initialCount }) => {
   );
 };
 
-export default Counter;
+export default ReduxCounter;
